@@ -25,10 +25,16 @@ namespace Full_GRASP_And_SOLID
             recipe.FinalProduct = GetProduct("Café con leche");
             recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
-
+        /*
             AllInOnePrinter printer = new AllInOnePrinter();
             printer.PrintRecipe(recipe, Destination.Console);
             printer.PrintRecipe(recipe, Destination.File);
+        */
+            IPrinter printer;
+            printer = new FilePrinter();
+            printer.PrintTicket(recipe);
+            printer = new ConsolePrinter();
+            printer.PrintTicket(recipe);
         }
 
         private static void PopulateCatalogs()
@@ -74,3 +80,7 @@ namespace Full_GRASP_And_SOLID
         }
     }
 }
+
+/*Creo una interfaz IPrinter y las clases ConsolePrinter y FilePrinter paro no tenr que utilizar una sola clase Print.
+Ademas con estas dos clases se aplica polimorfismo y LSP, en donde ambas clases implementan la misma interfaz.
+*/
